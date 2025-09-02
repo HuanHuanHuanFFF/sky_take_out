@@ -92,4 +92,20 @@ public class EmployeeController {
         employeeService.chanegeStatus(status, id);
         return Result.success();
     }
+
+    @GetMapping("/{id}")
+    @ApiOperation("通过ID查询员工信息")
+    public Result<Employee> queryById(@PathVariable Long id) {
+        log.info("通过ID查询员工信息,ID:{}", id);
+        Employee employee = employeeService.queryById(id);
+        return Result.success(employee);
+    }
+
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("更新员工信息:{}", employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }
